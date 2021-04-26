@@ -1,10 +1,10 @@
 class Node:
-    def __init__(self, data, next = None):
+    def __init__(self, data = None, next = None):
         self.data = data
         self.next = next
 
 class LinkedList:
-    def __init__(self, head = None):
+    def __init__(self, head):
         self.head = head
     def push(self, data):
         new_node = Node(data)
@@ -32,17 +32,35 @@ class LinkedList:
             temp = nxt
         self.head = prev
     def reverse_recur(self):
-        
-    def reverserecur(self):
-        temp = reverserecur(self.head)
+        def _reverse_recur(temp, prev):
+            if not temp:
+                return prev
+            nxt = temp.next
+            temp.next = prev
+            prev = temp
+            temp = nxt
+            return _reverse_recur(temp, prev)
+        self.head = _reverse_recur(temp = self.head, prev = None)
+    def append_list(self, data):
+        new_node = Node(data)
+        temp = self.head
+        if temp is None:
+            new_node = self.head
+        while temp.next:
+            temp = temp.next
+        if temp.next is None:
+            temp.next = new_node
+    def list_to_linked(self, collection):
+        for i in collection:
+            self.append_list(i)
+        return self.print_list()
+
+lists = [-1,-2,-3,-4]
+def list_to_ll(arr):
+    for i in arr:
+        ll.push(i)
+    return ll.print_list()
+
 if __name__ == "__main__":
     Node1 = Node(5)
     ll = LinkedList(Node1)
-    ll.push(4)
-    ll.push(3)
-    ll.push(2)
-    ll.push(1)
-    ll.push(0)
-    ll.print_list()
-    ll.reverse()
-    ll.print_list()
