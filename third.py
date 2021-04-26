@@ -51,16 +51,43 @@ class LinkedList:
         if temp.next is None:
             temp.next = new_node
     def list_to_linked(self, collection):
-        for i in collection:
-            self.append_list(i)
-        return self.print_list()
+        temp = self.head
+        if temp.data is None:
+            temp.data = collection[0]
+            for i in range(2,len(collection),1):
+                # if temp.data is None:
+                #     new_node = Node(i)
+                #     new_node = self.head
+                #     temp.next = None
+                self.append_list(i)
+                temp = temp.next
+            if temp.next is None:
+                new_node = Node(collection[-1])
+                temp.next = new_node
+            return self.print_list()
+        else:
+            for i in collection:
+                # if temp.data is None:
+                #     new_node = Node(i)
+                #     new_node = self.head
+                #     temp.next = None
+                self.append_list(i)
+    # def list_to_ll(self, collection):
+    #     temp = self.head
+    #     if temp is None:
+    #         temp = temp.next
+    #         temp = collection[0]
+    #         for i in range(1,len(collection)):
+    #             self.append_list(i)
+    #         return self.print_list()
 
-lists = [-1,-2,-3,-4]
+lists = [1,2,3,4,5,6,7,8]
 def list_to_ll(arr):
     for i in arr:
         ll.push(i)
     return ll.print_list()
 
 if __name__ == "__main__":
-    Node1 = Node(5)
+    Node1 = Node()
     ll = LinkedList(Node1)
+    ll.list_to_linked(lists)
